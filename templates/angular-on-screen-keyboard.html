@@ -1,0 +1,12 @@
+﻿<div class="keyboard">
+    <table>
+        <tr ng-repeat="row in ctrl.rows">
+            <td ng-repeat="key in row"
+                ng-click="ctrl.printKeyStroke()"
+                colspan="{{key.colspan || 1}}"
+                ng-class="{'button': key.type !== 'margin', 'letter': key.type !== 'margin' || key.type !== 'shift'}"
+                class="{{key.type}}"  ng-bind-html="ctrl.getText(key)">
+            </td>
+        </tr>
+    </table>
+</div>

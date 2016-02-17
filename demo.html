@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" ng-app="testApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="js/angular-on-screen-keyboard.js"></script>
+    <link href="dist/angular-on-screen-keyboard.min.css" rel="stylesheet" />
+</head>
+<body>
+<input type="text" style="width:800px;"/>
+<on-screen-keyboard></on-screen-keyboard>
+
+<script type="text/javascript">
+    angular.module('testApp', ['onScreenKeyboard']);
+</script>
+
+</body>
+</html>
