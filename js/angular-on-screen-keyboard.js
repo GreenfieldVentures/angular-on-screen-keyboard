@@ -161,6 +161,9 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                         }
                     })
                     .bind('keydown', function(){
+                        if(!ctrl.lastInputCtrl)
+                            return;
+
                         ctrl.startPos = ctrl.lastInputCtrl.selectionStart;
                         ctrl.endPos = ctrl.lastInputCtrl.selectionEnd;
                     });
