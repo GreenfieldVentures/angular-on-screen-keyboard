@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="testApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="js/angular-on-screen-keyboard.js"></script>
+    <link href="dist/angular-on-screen-keyboard.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <input type="text" style="width:800px;"/>
+        <br/>
+        <br/>
+        <div ng-controller="testController">
+            <on-screen-keyboard rows="rows" uppercase-all-words></on-screen-keyboard>
+        </div>
+    </div>
+    <script type="text/javascript">
+        angular.module('testApp', ['onScreenKeyboard'])
+            .controller('testController', function($scope){
+                $scope.rows = [
+                    ['q','w','e','r','t','y','u','i','o','p'],
+                    ['a','s','d','f','g','h','j','k','l', {type: 'erase', text: '&lArr;'}],
+                    [{type: 'shift'}, 'z','x','c','v','b','n','m',',', '.'],
+                    [{type: 'space', colspan: 10, text: ' '}]
+                ];
+        });
+    </script>
+</body>
+</html>

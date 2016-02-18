@@ -41,9 +41,6 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
             link: function (scope, element, attr) {
                 var ctrl = scope.ctrl;
 
-                if (!ctrl.uppercaseAllWords)
-                ctrl.uppercaseAllWords = attr.hasOwnProperty('uppercaseAllWords');
-
                 element.bind('contextmenu', function (event) {
                     event.preventDefault();
                     return false;
@@ -145,7 +142,7 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                             ctrl.inverseCase();
                         }
                     }
-                    else if (angular.element(ctrl.lastInputCtrl).val().slice(-1) === ' ' && !ctrl.isUpperCase && ctrl.uppercaseAllWords)
+                    else if (angular.element(ctrl.lastInputCtrl).val().slice(-1) === ' ' && !ctrl.isUpperCase && attr.hasOwnProperty('uppercaseAllWords'))
                         ctrl.inverseCase();
                     else{
                         ctrl.isUpperCase = true;

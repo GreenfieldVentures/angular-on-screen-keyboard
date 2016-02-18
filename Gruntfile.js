@@ -99,6 +99,7 @@ module.exports = function (grunt) {
             files: [
                 "demo1.html",
                 "demo2.html",
+                "demo3.html",
                 "Gruntfile.js",
                 "css/*.less",
                 "js/*.js",
@@ -117,8 +118,6 @@ module.exports = function (grunt) {
             app: {
                 bsFiles: {
                     src : [
-                        'demo1.html',
-                        'demo2.html',
                         'dist/*.*'
                     ]
                 },
