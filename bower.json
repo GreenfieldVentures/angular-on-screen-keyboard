@@ -1,0 +1,22 @@
+{
+  "name": "angular-on-screen-keyboard",
+  "version": "0.9.1"
+	"main": ["dist/angular-on-screen-keyboard.min.js", "dist/angular-on-screen-keyboard.min.css"],
+	"dependencies": {
+		"angular": ">= 1.2.0",
+    "angular-sanitize": ">= 1.5.0",
+	},
+	"ignore": [
+    "**/.*",
+    "node_modules",
+    "js",
+    "css",
+    "templates",
+    ".gitignore",
+    ".git",
+    ".idea",
+    "Gruntfile.js",
+    "package.json",
+    "*.html"
+	]
+}

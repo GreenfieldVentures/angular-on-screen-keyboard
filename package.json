@@ -1,5 +1,23 @@
 {
   "name": "angular-on-screen-keyboard",
+  "version": "0.9.1"
+  "description": "Always present 'On screen keyboard' for angular",
+  "author": "Greenfield Ventures AB",
+  "homepage": "https://github.com/GreenfieldVentures/angular-on-screen-keyboard",
+  "main": "dist/angular-on-screen-keyboard.min.js",
+  "style": "dist/angular-on-screen-keyboard.min.css",
+  "keywords": [
+    "directive",
+    "angular",
+    "keyboard",
+    "numpad",
+    "onscreen"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GreenfieldVentures/angular-on-screen-keyboard.git"
+  },
+  "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-angular-templates": "^1.0.3",
