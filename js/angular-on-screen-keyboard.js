@@ -15,9 +15,9 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                 if (!ctrl.rows){
                     ctrl.rows = [
                         ['1', '2', '3', '4','5','6','7','8', '9', '0', {type: 'erase', colspan: 2, text: '&lArr;'}],
-                        ['q','w','e','r','t','y','u','i','o','p','å','@'],
-                        ['a','s','d','f','g','h','j','k','l','ö','ä', {type: 'margin'}],
-                        [{type: 'shift'}, 'z','x','c','v','b','n','m','.','-','_',{type: 'shift'}],
+                        ['q','w','e','r','t','y','u','i','o','p','@'],
+                        ['a','s','d','f','g','h','j','k','l','-','_', {type: 'margin'}],
+                        [{type: 'shift'}, 'z','x','c','v','b','n','m',',', '.',{type: 'shift'}],
                         [{type: 'margin'}, {type: 'space', colspan: 9, text: ' '}]
                     ];
                 }
