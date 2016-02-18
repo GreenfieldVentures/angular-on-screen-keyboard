@@ -97,12 +97,15 @@ module.exports = function (grunt) {
         clean: ['dist/templates.js'],
         watch: {
             files: [
+                "demo1.html",
+                "demo2.html",
                 "Gruntfile.js",
                 "css/*.less",
-                "js/**/*.js"
+                "js/*.js",
+                "templates/*.html"
             ],
             tasks: [
-                'default'
+                'pack'
             ],
             options: {
                 spawn: true,
@@ -114,10 +117,9 @@ module.exports = function (grunt) {
             app: {
                 bsFiles: {
                     src : [
-                        'demo.html',
-                        'dist/angular-on-screen-keyboard.min.js',
-                        'templates/*.html',
-                        'dist/angular-on-screen-keyboard.min.css',
+                        'demo1.html',
+                        'demo2.html',
+                        'dist/*.*'
                     ]
                 },
                 options: {
@@ -127,7 +129,7 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('default', [
+    grunt.registerTask('pack', [
         'jshint',
         'less',
         'ngAnnotate',
@@ -135,6 +137,10 @@ module.exports = function (grunt) {
         'ngtemplates',
         'concat',
         'clean',
+    ]);
+
+    grunt.registerTask('default', [
+        'pack',
         'browserSync',
         'watch'
     ]);

@@ -10,31 +10,30 @@
         border-spacing: 10px;
         border-collapse: separate;
         background-color: #F1F1F1;
-        border-radius: 8px;
     }
 
     .button {
-        border: 1px solid #999;
         background-color: #fff;
-        border-radius: 4px;
-        width: 70px;
-        height: 70px;
+        box-shadow: 0px 1px 3px rgba(0,0,0,0.12), 0px 1px 2px rgba(0,0,0,0.24);
+        width: 60px;
+        height: 60px;
         text-align: center;
-        font-family: "Lucida Sans Unicode", "Lucida Grande";
+        font-family: "arial";
         cursor: pointer;
         color: #000;
-        font-size: 25px;
+        font-size: 22px;
+
+        &:hover{
+            background-color: #dfdfdf;
+        }
+        &:active {
+            background-color: #999;
+            color: #fff;
+        }
     }
 
     .margin {
-        border: 1px solid transparent;
         width: 40px;
         height: 50px;
-    }
-
-    .button:active {
-        background-color: #999;
-        color: #fff;
-        border: 1px solid #000;
     }
 }

@@ -4,7 +4,7 @@
             <td ng-repeat="key in row"
                 ng-click="ctrl.printKeyStroke()"
                 colspan="{{key.colspan || 1}}"
-                ng-class="{'button': key.type !== 'margin', 'letter': key.type !== 'margin' || key.type !== 'shift'}"
+                ng-class="{'button': key.type !== 'margin', 'letter': key.type !== 'margin'}"
                 class="{{key.type}}"  ng-bind-html="ctrl.getText(key)">
             </td>
         </tr>
