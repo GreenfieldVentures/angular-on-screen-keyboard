@@ -2,23 +2,23 @@
 <html lang="en" ng-app="testApp">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>angular-on-screen-keyboard Demo 2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script>
     <script src="dist/angular-on-screen-keyboard.min.js"></script>
     <link href="dist/angular-on-screen-keyboard.min.css" rel="stylesheet" />
 </head>
-<body>
-<div>Enter some numbers: </div>
-<input type="text" style="width:150px;"/>
-<br/>
-<br/>
-<on-screen-keyboard rows="[['1', '2'],['3','4'], [{type: 'erase', colspan: 2, text: '&lArr;'}]]"></on-screen-keyboard>
+<body style="margin: 50px;">
+    <div>Enter some numbers: </div>
+    <input type="text" style="width:150px;"/>
+    <br/>
+    <br/>
+    <on-screen-keyboard rows="[['1', '2'],['3','4'], [{type: 'erase', colspan: 2, text: '&lArr;'}]]"></on-screen-keyboard>
 
-<script type="text/javascript">
-    angular.module('testApp', ['onScreenKeyboard']);
-    document.getElementsByTagName('INPUT')[0].focus();
-</script>
+    <script type="text/javascript">
+        angular.module('testApp', ['onScreenKeyboard']);
+        document.getElementsByTagName('INPUT')[0].focus();
+    </script>
 
 </body>
 </html>
