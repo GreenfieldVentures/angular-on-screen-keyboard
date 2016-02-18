@@ -1,6 +1,8 @@
-﻿'use strict';
+/* global angular:false */
 angular.module('onScreenKeyboard', ['ngSanitize'])
     .directive('onScreenKeyboard', function ($timeout, $document) {
+      'use strict';
+      
         return {
             restrict: 'E',
             bindToController: true,
@@ -34,7 +36,7 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                         return $sce.trustAsHtml(val);
 
                     return val;
-                }
+                };
             },
             link: function (scope, element, attr) {
                 var ctrl = scope.ctrl;
@@ -42,21 +44,21 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                 if (!ctrl.uppercaseAllWords)
                 ctrl.uppercaseAllWords = attr.hasOwnProperty('uppercaseAllWords');
 
-                element.bind('contextmenu', function () {
+                element.bind('contextmenu', function (event) {
                     event.preventDefault();
                     return false;
                 });
 
                 ctrl.isUpperCase = false;
-                ctrl.lastInputCtrl;
-                ctrl.startPos;
-                ctrl.endPos;
+                ctrl.lastInputCtrl = null;
+                ctrl.startPos = null;
+                ctrl.endPos = null;
 
-                ctrl.printKeyStroke = function(){
+                ctrl.printKeyStroke = function(event){
                     if (!ctrl.lastInputCtrl)
                         return;
 
-                    var e = angular.element(event.srcElement);
+                    var e = angular.element(event.target || event.srcElement);
 
                     if (e.hasClass('erase')){
                         ctrl.eraseKeyStroke();
@@ -96,11 +98,11 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     });
 
                     ctrl.isUpperCase = !ctrl.isUpperCase;
-                }
+                };
 
                 ctrl.refocus = function () {
                     ctrl.lastInputCtrl.focus();
-                }
+                };
 
                 ctrl.eraseKeyStroke = function () {
                     if (!ctrl.lastInputCtrl)
@@ -164,7 +166,7 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     .bind('keydown', function(){
                         ctrl.startPos = ctrl.lastInputCtrl.selectionStart;
                         ctrl.endPos = ctrl.lastInputCtrl.selectionEnd;
-                    })
+                    });
 
                 $timeout(function(){
                     ctrl.inverseCase();
