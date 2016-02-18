@@ -1,6 +1,6 @@
 ﻿'use strict';
 angular.module('onScreenKeyboard', ['ngSanitize'])
-    .directive('onScreenKeyboard', function ($timeout) {
+    .directive('onScreenKeyboard', function ($timeout, $document) {
         return {
             restrict: 'E',
             bindToController: true,
@@ -56,7 +56,7 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     if (!ctrl.lastInputCtrl)
                         return;
 
-                    var e = $(event.srcElement);
+                    var e = angular.element(event.srcElement);
 
                     if (e.hasClass('erase')){
                         ctrl.eraseKeyStroke();
@@ -67,36 +67,39 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     }
 
 
-                    var val = $(ctrl.lastInputCtrl).val();
+                    var lastInputCtrl = angular.element(ctrl.lastInputCtrl);
+                    var val = lastInputCtrl.val();
                     var pre = val.substring(0, ctrl.startPos);
                     var post = val.substring(ctrl.endPos, val.length);
-                    var l = $(ctrl.lastInputCtrl);
-                    l.val(pre + e.text() + post);
-                    angular.element(l).triggerHandler('change');
+                    lastInputCtrl.val(pre + e.text() + post);
+                    lastInputCtrl.triggerHandler('change');
                     ctrl.startPos++;
                     ctrl.endPos++;
                     ctrl.setKeyboardLayout();
                 };
 
                 ctrl.inverseCase = function(){
-                    var letters = $(element).find('.letter');
+                    var letters = element[0].querySelectorAll('.letter');
                     angular.forEach(letters, function (x) {
+                        var em = angular.element(x);
                         if (!ctrl.isUpperCase)
-                            $(x).text($(x).text().toString().toUpperCase());
+                            em.text(em.text().toString().toUpperCase());
                         else
-                            $(x).text($(x).text().toString().toLowerCase());
+                            em.text(em.text().toString().toLowerCase());
                     });
 
-                    if (ctrl.isUpperCase)
-                        $(element).find('.shift').html('&dArr;');
-                    else
-                        $(element).find('.shift').html('&uArr;');
+                    angular.forEach(element[0].querySelectorAll('.shift'), function(shift){
+                        if (ctrl.isUpperCase)
+                            angular.element(shift).html('&dArr;');
+                        else
+                            angular.element(shift).html('&uArr;');
+                    });
 
                     ctrl.isUpperCase = !ctrl.isUpperCase;
                 }
 
                 ctrl.refocus = function () {
-                    $(ctrl.lastInputCtrl).focus();
+                    ctrl.lastInputCtrl.focus();
                 }
 
                 ctrl.eraseKeyStroke = function () {
@@ -105,13 +108,13 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
 
                     var hasSel = ctrl.startPos !== ctrl.endPos;
 
-                    var val = $(ctrl.lastInputCtrl).val();
+                    var lastInputCtrl = angular.element(ctrl.lastInputCtrl);
+                    var val = lastInputCtrl.val();
                     var pre = val.substring(0, hasSel ? ctrl.startPos : ctrl.startPos - 1);
                     var post = val.substring(ctrl.endPos, val.length);
 
-                    $(ctrl.lastInputCtrl).val(pre + post);
-                    var l = $(ctrl.lastInputCtrl);
-                    angular.element(l).triggerHandler('change');
+                    lastInputCtrl.val(pre + post);
+                    lastInputCtrl.triggerHandler('change');
 
                     if (hasSel) {
                         ctrl.endPos = ctrl.startPos;
@@ -134,13 +137,13 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     }
                     else if (ctrl.lastInputCtrl.className && ctrl.isUpperCase)
                         ctrl.inverseCase();
-                    else if ($(ctrl.lastInputCtrl).val().length === 0) {
+                    else if (angular.element(ctrl.lastInputCtrl).val().length === 0) {
                         if (!ctrl.isUpperCase) {
                             ctrl.isUpperCase = false;
                             ctrl.inverseCase();
                         }
                     }
-                    else if ($(ctrl.lastInputCtrl).val().slice(-1) === ' ' && !ctrl.isUpperCase && ctrl.uppercaseAllWords)
+                    else if (angular.element(ctrl.lastInputCtrl).val().slice(-1) === ' ' && !ctrl.isUpperCase && ctrl.uppercaseAllWords)
                         ctrl.inverseCase();
                     else{
                         ctrl.isUpperCase = true;
@@ -148,7 +151,7 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     }
                 };
 
-                $('input, textarea')
+                $document.find('input')
                     .bind('blur focus', function () {
                         ctrl.setKeyboardLayout();
 
