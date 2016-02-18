@@ -87,7 +87,7 @@ module.exports = function (grunt) {
             app: {
                 options: {
                     separator: ';\n',
-                    sourceMap: true
+                    sourceMap: false
                 },
                 files: [
                     {'dist/angular-on-screen-keyboard.min.js': ['dist/*.js']}
