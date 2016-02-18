@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="js/angular-on-screen-keyboard.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script>
+    <script src="dist/angular-on-screen-keyboard.min.js"></script>
     <link href="dist/angular-on-screen-keyboard.min.css" rel="stylesheet" />
 </head>
 <body>
     <div>
+        <div>Enter your full name:</div>
         <input type="text" style="width:800px;"/>
         <br/>
         <br/>
@@ -27,6 +28,7 @@
                     [{type: 'space', colspan: 10, text: ' '}]
                 ];
         });
+        document.getElementsByTagName('INPUT')[0].focus();
     </script>
 </body>
 </html>
