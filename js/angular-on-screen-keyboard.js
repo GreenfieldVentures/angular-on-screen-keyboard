@@ -48,12 +48,6 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
             },
             link: function (scope, element, attr) {
                 var ctrl = scope.ctrl;
-
-                element.bind('contextmenu', function (event) {
-                    event.preventDefault();
-                    return false;
-                });
-
                 ctrl.isUpperCase = false;
                 ctrl.lastInputCtrl = null;
                 ctrl.startPos = null;
@@ -62,6 +56,9 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                 ctrl.printKeyStroke = function(key, event){
                     if (!ctrl.lastInputCtrl)
                         return;
+
+                    ctrl.startPos = ctrl.lastInputCtrl.selectionStart;
+                    ctrl.endPos = ctrl.lastInputCtrl.selectionEnd;
 
                     if (key.type === 'erase'){
                         ctrl.eraseKeyStroke();
@@ -81,7 +78,8 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
 
                     ctrl.startPos += htmlKeyVal.length;
                     ctrl.endPos += htmlKeyVal.length;
-
+                    ctrl.lastInputCtrl.selectionStart = ctrl.startPos;
+                    ctrl.lastInputCtrl.selectionEnd = ctrl.startPos;
                     ctrl.setKeyboardLayout();
                 };
 
@@ -133,16 +131,39 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     }
                 };
 
-                $document.find('input')
-                    .bind('blur focus keydown', function () {
-                        ctrl.setKeyboardLayout();
+                var focusin = function(event){
+                    var e = event.target || event.srcElement;
 
-                        ctrl.lastInputCtrl = this;
-                        if (ctrl.lastInputCtrl && ctrl.lastInputCtrl.type != "checkbox") {
-                            ctrl.startPos = ctrl.lastInputCtrl.selectionStart;
-                            ctrl.endPos = ctrl.lastInputCtrl.selectionEnd;
-                        }
-                    });
+                    if (e.tagName === 'INPUT' || e.tagName === 'TEXTAREA') {
+                        ctrl.lastInputCtrl = e;
+                        ctrl.setKeyboardLayout();
+                        scope.$digest();
+                    }
+                };
+
+                var keyup = function(){
+                    if (!ctrl.lastInputCtrl)
+                        return;
+
+                    ctrl.startPos = ctrl.lastInputCtrl.selectionStart;
+                    ctrl.endPos = ctrl.lastInputCtrl.selectionEnd;
+
+                    ctrl.setKeyboardLayout();
+                    scope.$digest();
+                };
+
+                $document.bind('focusin', focusin);
+                $document.bind('keyup', keyup);
+
+                scope.$on("$destroy", function() {
+                    $document.unbind('focusin', focusin);
+                    $document.unbind('keyup', keyup);
+                });
+
+                element.bind('contextmenu', function (event) {
+                    event.preventDefault();
+                    return false;
+                });
 
                 $timeout(function(){
                     ctrl.isUpperCase = true;
