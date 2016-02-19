@@ -1,6 +1,6 @@
 {
   "name": "angular-on-screen-keyboard",
-  "version": "0.9.3",
+  "version": "0.9.4",
 	"main": ["dist/angular-on-screen-keyboard.min.js", "dist/angular-on-screen-keyboard.min.css"],
 	"dependencies": {
 		"angular": ">= 1.2.0",
