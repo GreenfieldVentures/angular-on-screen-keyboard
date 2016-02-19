@@ -41,7 +41,7 @@ API (optional)
         * `colspan` - Specifies how wide, in number of keys, the key will be. Default: 1
         * `text` - The text on the key and thereby the value the pressed key will send to the currently selected input field
         * `type` - Specifies the type of key. The value will be set as an additional class name on the key's element, though some reserved names will give the key extra powers such as 'margin', 'erase' and 'shift 
-    * To specifify an empty space instead of a key, for layout purposes, by adding an object with the type set to margin: ```js {type: 'margin'}``` in the array
+    * To specify an empty space instead of a key, for layout purposes, by adding an object with the type set to margin: ``` {type: 'margin'}``` in the array
 * `uppercase-all-words` - By specifying this attribute the keyboard will be set to uppercase before entering the first letter of every new word
 
 [Demo 2]: http://rawgit.com/GreenfieldVentures/angular-on-screen-keyboard/master/demo2.html
