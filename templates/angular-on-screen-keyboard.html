@@ -2,7 +2,7 @@
     <table>
         <tr ng-repeat="row in ctrl.rows">
             <td ng-repeat="key in row"
-                ng-click="ctrl.printKeyStroke($event)"
+                ng-click="ctrl.printKeyStroke(key, $event)"
                 colspan="{{key.colspan || 1}}"
                 ng-class="{'button': key.type !== 'margin', 'letter': key.type !== 'margin'}"
                 class="{{key.type}}"  ng-bind-html="ctrl.getText(key)">
