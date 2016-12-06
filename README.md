@@ -47,3 +47,7 @@ API (optional)
 
 [Demo 2]: http://rawgit.com/GreenfieldVentures/angular-on-screen-keyboard/master/demo2.html
 [Demo 3]: http://rawgit.com/GreenfieldVentures/angular-on-screen-keyboard/master/demo3.html
+
+DEPENDENCIES
+-----------
+* ngSanitize
