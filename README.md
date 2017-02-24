@@ -51,3 +51,8 @@ API (optional)
 DEPENDENCIES
 -----------
 * ngSanitize
+
+POLYFILLS
+---------
+FireFox seems to lack proper support for focusin. This polyfill might help
+https://gist.github.com/nuxodin/9250e56a3ce6c0446efa
