@@ -81,6 +81,7 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     ctrl.lastInputCtrl.selectionStart = ctrl.startPos;
                     ctrl.lastInputCtrl.selectionEnd = ctrl.startPos;
                     ctrl.setKeyboardLayout();
+                    ctrl.refocus();
                 };
 
                 ctrl.refocus = function () {
