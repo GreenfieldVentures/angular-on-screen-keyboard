@@ -138,7 +138,6 @@ angular.module('onScreenKeyboard', ['ngSanitize'])
                     if (e.tagName === 'INPUT' || e.tagName === 'TEXTAREA') {
                         ctrl.lastInputCtrl = e;
                         ctrl.setKeyboardLayout();
-                        scope.$digest();
                     }
                 };
 
